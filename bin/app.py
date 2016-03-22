@@ -1,4 +1,4 @@
-from gothonweb.map import map
+from gothonweb import map
 import web
 
 urls = (
@@ -17,23 +17,26 @@ if web.config.get('_session') is None:
 else:
 	session = web.config._session
 
-render = web.template.render('templates/', base='layot')
+render = web.template.render('templates/')
 
 class Index(object):
 	def GET(self):
 		session.room = map.START
 		web.seeother("/game")
 
-class GameEngie(object):
+class GameEngine(object):
+	
 	def GET(self):
-		if session.Room:
+		if session.room:
 			return render.show_room(room=session.room)
 		else:
+			#
 			return render.you_died()
 
 	def POST(self):
 		form = web.input(action=None)
 
+		#
 		if session.room and form.action:
 			session.room = session.room.go(form.action)
 

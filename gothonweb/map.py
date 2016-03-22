@@ -100,6 +100,11 @@ into jam jelly.
 
 generic_death = Room("death", "You died")
 
+hint_cc = Room("Cental Corridor Hint",
+	"""
+	You can tell a joke to make him happy
+	""")
+
 escape_pod.add_paths({
 	'2' : the_end_winner,
 	'*' : the_end_loser
@@ -115,10 +120,17 @@ laser_weapon_armory.add_paths({
 	'*' : generic_death
 })
 
+hint_cc.add_paths({'tell a joke' : laser_weapon_armory,
+				   '*' : generic_death
+})
+
 central_corridor.add_paths({
 	'shoot!' : generic_death,
 	'dodge!' : generic_death,
-	'tell a joke' : laser_weapon_armory
+	'tell a joke' : laser_weapon_armory,
+	'hint' : hint_cc
 })
 
 START = central_corridor
+START.go('tell a joke')
+print START('name')

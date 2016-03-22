@@ -6,12 +6,11 @@ $def with (room)
 $room.description
 </pre>
 
-$if room.name = "death":
-	<p><a href="/">Play again?</a></p>
-
+$if room.name == "death":
+    <p><a href="/">Play Again?</a></p>
 $else:
-	<p>
-	<form action="/game" method="POST">
-		- <input type="text" name="action"> <input type="SUBMIT">
-	</form>
-	</p>
+    <p>
+    <form action="/game" method="POST">
+        - <input type="text" name="action"> <input type="SUBMIT">
+    </form>
+    </p>

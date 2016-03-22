@@ -37,3 +37,5 @@ def test_gothon_game():
 
     room = START.go('tell a joke')
     assert_equal(room, laser_weapon_armory)
+    room.go('0132')
+    assert_equal(room, the_bridge)
